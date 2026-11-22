@@ -1,0 +1,81 @@
+solution:
+  description: Moonshine Micro speech-to-text demo for Alif AppKit-E8 M55_HE and
+    Corstone-300 FVP.
+  created-for: CMSIS-Toolbox@2.16.0
+  cdefault:
+  compiler: AC6
+
+  output-dirs:
+    tmpdir: ../tmp/speech-app
+
+  packs:
+    - pack: PyTorch::ExecuTorch@1.6.0
+    - pack: ARM::Cortex_DFP
+    - pack: ARM::SDS@3.1.0
+    - pack: AlifSemiconductor::Ensemble@2.3.0-rc1
+
+  target-types:
+    - type: Board
+      board: Alif Semiconductor::AppKit-E8-AIML
+      device: Alif Semiconductor::AE822FA0E5597BS0:M55_HE
+      define:
+        - APP_METHOD_POOL_SIZE: 3145728
+        - APP_TEMP_POOL_SIZE: 3145728
+        - SPEECHAPP_BOARD
+        - SPEECHAPP_CONTINUOUS_MIC
+      variables:
+        - Board-Layer: $SolutionDir()$/board/appkit-e8/Board_HE.clayer.yml
+        - AI-Layer: $SolutionDir()$/ai_layer/ai_layer.clayer.yml
+        - SDSIO-Layer: $SolutionDir()$/sds/usb/sdsio_usb.clayer.yml
+      target-set:
+        - set:
+          images:
+            - project-context: SpeechApp.Debug
+
+    - type: FVP
+      board: V2M-MPS3-SSE-300-FVP
+      device: SSE-300-MPS3
+      variables:
+        - Board-Layer: $SolutionDir()$/board/fvp/Board-U55.clayer.yml
+        - AI-Layer: $SolutionDir()$/ai_layer/ai_layer.clayer.yml
+        - SDSIO-Layer: $SolutionDir()$/sds/fvp/sdsio_fvp.clayer.yml
+      define:
+        - SPEECHAPP_FVP
+        - SPEECHAPP_SDS_PLAYBACK_ONLY
+      target-set:
+        - set:
+          images:
+            - project-context: SpeechApp.Debug
+          debugger:
+            name: Arm-FVP
+            model: FVP_Corstone_SSE-300_Ethos-U55
+            config-file: board/fvp/fvp_config_u55.txt
+            args: "--simlimit 60"
+  build-types:
+    - type: Debug
+      debug: on
+      optimize: debug
+    - type: Release
+      debug: off
+      optimize: balanced
+
+  projects:
+    - project: ./SpeechApp.cproject.yml
+
+  mlops:
+    description: ExecuTorch Moonshine Micro isolated-word speech-to-text demo.
+    npu:
+      type: Ethos-U55
+      macs: 128
+    vela:
+      ini: config/ensemble_vela.ini
+      system: RTSS_HE_SRAM_MRAM
+      memory: Shared_Sram
+    model:
+      clayer: $AI-Layer$
+      input:
+        - name: MoonshineWordCNN
+          file: model/moonshine/model.py
+          parameters:
+            input-shape: 1x1x64x128
+            calibration-samples: 63

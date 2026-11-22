@@ -1,0 +1,22 @@
+# Speech-to-Text Demo Prompts
+
+- Write and review a detailed application specification before implementation.
+- Create a Speech-to-Text demo example for the Alif E8 AI/ML AppKit using Moonshine Micro.
+- Run the application on the M55_HE core.
+- Capture audio from one on-board microphone and print recognized text over UART.
+- Use the CMSIS Ethos-U55 template and Alif DFP `2.3.0-rc1`.
+- Use ExecuTorch and Ethos-U55 acceleration instead of TFLM.
+- Create separate `Board` and `FVP` target types.
+- Use the Alif Audio vStream driver for board microphone capture.
+- Keep the microphone continuously active across recognition cycles.
+- Use SDS `3.1.0` for deterministic audio record and playback.
+- Control board SDS recording and playback with SDSIO-Server.
+- Support SDS playback only on the FVP target.
+- Output recognition labels, confidence, latency, and errors in a stable UART format.
+- Add SDS tests for 20 selected model words and one rejected unknown word, spoken by multiple speakers.
+- Reuse identical audio-processing and inference paths for live and SDS playback data.
+- Use the SETOOLS installation in `C:\Alif` to configure the board.
+- Keep board switch SW4 in the `SE` position.
+- Use the on-board J-Link for programming and debugging.
+- Use the board's USB V-Com interface for UART text output.
+- Deliver this as a clear, reproducible demo example rather than a production framework.

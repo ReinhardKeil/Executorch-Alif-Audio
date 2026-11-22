@@ -2,6 +2,25 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Alif: Install M55_HE or M55_HP debug stubs (single core configuration)",
+            "detail": "Uses the matching SETOOLS assets already installed under C:\\Alif and programs the selected port",
+            "type": "shell",
+            "command": [
+                "cd '${config:alif.setools.root}';",
+                "./app-gen-toc -f 'build/config/${command:cmsis-csolution.getProcessorName}_mram_cfg.json';",
+                "./app-write-mram -p ${input:discoverCOM};"
+            ],
+            "windows": {
+                "options": {
+                    "shell": {
+                        "executable": "powershell.exe",
+                        "args": ["-Command"]
+                    }
+                }
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Create Python environment (pip)",
             "detail": "Create .venv with the installed Python and pip, then install the model-export dependencies",
             "type": "shell",
@@ -47,6 +66,26 @@
         }
     ],
     "inputs": [
+        {
+            "id": "discoverCOM",
+            "type": "pickString",
+            "description": "Select the SETOOLS serial connection",
+            "options": [
+                {
+                    "label": "Board USB V-Com (COM4)",
+                    "value": "-c COM4"
+                },
+                {
+                    "label": "Discover COM ports interactively",
+                    "value": "-d"
+                },
+                {
+                    "label": "No - COM port is already selected",
+                    "value": ""
+                }
+            ],
+            "default": "-c COM4"
+        },
         {
             "id": "setupPythonVersion",
             "type": "promptString",

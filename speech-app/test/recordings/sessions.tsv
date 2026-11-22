@@ -1,0 +1,4 @@
+speaker	voice	prompt_order	expected_class_order	silence_ms	wav	sds
+speaker-a	zipvoice_american_female	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar banana	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar UNKNOWN	500	AudioIn.1.wav	AudioIn.1.sds
+speaker-b	zipvoice_english_male	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar banana	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar UNKNOWN	500	AudioIn.2.wav	AudioIn.2.sds
+speaker-c	zipvoice_indian_female	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar banana	zero one two three four five six seven eight nine yes no wifi ip delete finish cancel capital star dollar UNKNOWN	500	AudioIn.3.wav	AudioIn.3.sds

@@ -1,0 +1,9 @@
+sds:
+  name: AudioIn
+  description: Moonshine Micro input, mono PCM16 at 16 kHz
+  sample-frequency: 16000
+  content:
+    - audio:
+        bit-depth: 16
+        channels: 1
+        format: pcm

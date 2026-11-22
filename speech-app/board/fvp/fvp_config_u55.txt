@@ -1,0 +1,19 @@
+# Parameters:
+# instance.parameter=value       #(type, mode) default = 'def value' : description : [min..max]
+#------------------------------------------------------------------------------
+ethosu.num_macs=128                                   # (int   , init-time) default = '0x100'  : Number of 8x8 MACs performed per cycle (32, 64, 128, or 256).
+ethosu.extra_args=--fast                              # Fast functional simulation; reported NPU timing is not cycle-accurate.
+mps3_board.v_path=./board/fvp/vsi/python/             # Load arm_vio.py and arm_vsi3.py from the solution directory.
+mps3_board.telnetterminal0.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps3_board.telnetterminal0.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.telnetterminal1.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps3_board.telnetterminal1.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.telnetterminal2.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps3_board.telnetterminal2.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.telnetterminal5.quiet=1                    # (bool  , init-time) default = '0'      : Avoid output on stdout/stderr
+mps3_board.telnetterminal5.start_telnet=0             # (bool  , init-time) default = '1'      : Start telnet if nothing connected
+mps3_board.uart0.out_file=./test/recordings/fvp-uart.log # (string, init-time) persistent UART regression log
+mps3_board.uart0.unbuffered_output=1                  # (bool  , init-time) default = '0'      : Show UART output immediately on stdout
+mps3_board.uart0.shutdown_on_eot=1                    # (bool  , init-time) default = '0'      : Shutdown simulation when a EOT (ASCII 4) char is transmitted (useful for regression tests when semihosting is not available)
+mps3_board.visualisation.disable-visualisation=1      # (bool  , init-time) default = '0'      : Enable/disable visualisation
+#------------------------------------------------------------------------------

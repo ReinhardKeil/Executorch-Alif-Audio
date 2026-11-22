@@ -1,0 +1,15 @@
+sdsio:
+  interface:
+    usb:
+      high_priority: true
+
+  workdir: ./test/recordings
+  metadir: ./test
+  write-flush-records: 100
+
+  streams:
+    - name: AudioIn
+      view: wav
+
+  flag-info:
+    - 0: Verbose result diagnostics

@@ -1,0 +1,23 @@
+sdsio:
+  # FVP runs with the solution directory (`speech-app`) as its working
+  # directory. arm_vsi3.py discovers this canonical filename automatically.
+  workdir: ./test/recordings
+  metadir: ./test
+  write-flush-records: 1
+
+  streams:
+    - name: AudioIn
+      view: wav
+    - name: ModelOut
+      view: signal
+
+  flag-info:
+    - 0: Verbose result diagnostics
+
+  play:
+    - step: "speaker-a: commands + unknown"
+      labels: [ 1 ]
+    - step: "speaker-b: commands + unknown"
+      labels: [ 2 ]
+    - step: "speaker-c: commands + unknown"
+      labels: [ 3 ]

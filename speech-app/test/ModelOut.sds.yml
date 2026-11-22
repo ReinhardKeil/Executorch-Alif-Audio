@@ -1,0 +1,23 @@
+sds:
+  name: ModelOut
+  description: Moonshine classification result; class -1 means confidence-rejected UNKNOWN
+  sample-frequency: 1
+  tick-frequency: 1000
+  content:
+    - value: session
+      type: uint32_t
+    - value: utterance
+      type: uint32_t
+    - value: captured_samples
+      type: uint32_t
+      unit: samples
+    - value: predicted_class
+      type: int32_t
+    - value: expected_class
+      type: int32_t
+    - value: pass
+      type: uint32_t
+    - value: confidence
+      type: float
+    - value: logit
+      type: float

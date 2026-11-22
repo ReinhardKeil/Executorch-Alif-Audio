@@ -1,0 +1,29 @@
+sdsio:
+  interface:
+    usb:
+      high_priority: true
+
+  # Paths are relative to this control file. Recordings are kept in their own
+  # directory; stream metadata sits beside this active SDSIO configuration.
+  workdir: ./recordings
+  metadir: .
+  write-flush-records: 1
+
+  streams:
+    - name: AudioIn
+      view: wav
+    - name: ModelOut
+      view: signal
+
+  flag-info:
+    - 0: Verbose result diagnostics
+
+  # Each session contains 20 commands plus the OOV prompt "banana",
+  # separated by 500 ms of silence for VAD/window reset.
+  play:
+    - step: "speaker-a: commands + unknown"
+      labels: [ 1 ]
+    - step: "speaker-b: commands + unknown"
+      labels: [ 2 ]
+    - step: "speaker-c: commands + unknown"
+      labels: [ 3 ]
